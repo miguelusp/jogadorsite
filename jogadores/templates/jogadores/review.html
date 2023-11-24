@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Resenhar Jogador {{ jogador.name }} </h2>
+
+<form action="{% url 'jogadores:review' jogador.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Postar Comentário</button>
+</form>
+
+<p><a href="{% url 'jogadores:detail' jogador.id %}">Voltar para a página do jogador</a></p>
+{% endblock content %}

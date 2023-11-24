@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Lendas da categoria : {{category.name}}</h2>
+{% if category.jogador_set.all%}
+<section class="lista-de-cards">
+    {% for jogador in category.jogador_set.all%}
+    <article class="card">
+      <a href="{% url 'jogadores:detail' jogador.id %}"> <!-- modifique esta linha -->
+          <img src="{{ jogador.poster_url }}" alt="Poster do jogador {{ jogador.name }}" />
+      </a>
+      <p>{{ jogador.name }} </p>
+    </article>
+  {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrado nenhum jogador.</p>
+{% endif %} {% endblock content %}

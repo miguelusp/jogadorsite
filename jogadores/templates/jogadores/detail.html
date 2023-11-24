@@ -1,0 +1,60 @@
+{% extends 'base.html' %} 
+{% block title %}
+  {{ jogador.name }} 
+{% endblock title %}
+{% block content %}
+<h2>Detalhes do  {{ jogador.name }} </h2>
+<section class="dados-de-jogador">
+  <img src="{{ jogador.poster_url }}" alt="Poster do jogador {{ jogador.name}}">
+  <ul>
+    <li>Nome: {{ jogador.name }}</li>
+    {% if jogador.provider %}
+        <li></li>
+        {% if jogador.provider.has_flat_price %}
+            <li> </li>
+        {% else %}
+            <li></li>
+        {% endif %}
+    {% endif %}
+    {% if jogador.list_set.all %}
+       <li>Incluso nas listas: {{ jogador.list_set.all|join:", " }} </li>
+    {% endif %}
+
+
+
+      {% if jogador.categories.all %}
+        {% for category in jogador.categories.all%}
+        <li> Conquista: {{category.name}} </li>
+        {% endfor %}
+      {% endif %}
+
+
+      <li><a href="{% url 'jogadores:update' jogador.id %}">Editar</a></li>
+      <li><a href="{% url 'jogadores:delete' jogador.id %}">Apagar</a></li>
+      
+  </ul>
+  <a href="{% url 'jogadores:review' jogador.pk %}"><button>Crie Comentário</button></a>
+</section>
+
+<section>
+  <header>
+      <h3>Comentários</h3>
+  </header>
+  <ul>
+      {% if jogador.review_set.all %}
+          {% for review in jogador.review_set.all %}
+              <figure>
+                  <blockquote>
+                      "{{ review.text }}"
+                  </blockquote>
+                  <figcaption>—{{ review.author }} em: {{ review.date }}    </figcaption>
+              </figure>
+          {% endfor %}
+      {% else %}
+          <p>Ainda não existe nenhum comentário para este jogador.</p>
+      {% endif %}
+  </ul>
+</section>
+
+{% endblock content %}
+
