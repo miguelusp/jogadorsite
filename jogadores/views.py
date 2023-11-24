@@ -48,7 +48,6 @@ def create_jogador(request):
             jogador.release_year = 2023  # Substitua isso pelo valor desejado
 
             jogador.save()
-
             # O método save_m2m() é usado para salvar os campos ManyToMany após salvar o objeto principal
             jogador_form.save_m2m()
 
