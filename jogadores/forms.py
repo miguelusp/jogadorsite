@@ -11,11 +11,13 @@ class JogadorForm(ModelForm):
             'name',
             'poster_url',
             'categories',
+            'release_year',
         ]
         labels = {
             'name': 'Nome do Jogador',
             'poster_url': 'URL do Poster do Jogador',
             "categories": "categorias",
+            'release_year': "Ano de aposentadoria"
         }
 
 
