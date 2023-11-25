@@ -13,7 +13,7 @@ class Jogador(models.Model):
     name = models.CharField(max_length=255)
     poster_url = models.URLField(max_length=200, null=True)
     categories = models.ManyToManyField(Category)
-    release_year = models.IntegerField()
+    release_year = models.IntegerField( blank=True )
     date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
